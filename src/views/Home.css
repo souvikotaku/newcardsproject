@@ -24,7 +24,7 @@ body {
 .scrollable-box {
   flex: 1;
   overflow-y: auto;
-  padding: 20px;
+  /* padding: 20px; */
   padding-top: 0px;
   border-radius: 8px;
   background-color: #fceefc;
@@ -294,10 +294,23 @@ body {
   background: darkred;
 }
 /* Options Popup Styling */
-.options-popup {
+/* .options-popup {
   position: absolute;
   top: -60px;
   left: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 200px;
+} */
+
+.options-popup {
+  position: absolute;
+  bottom: -30%;
+  left: 50%; /* Center the popup horizontally */
+  transform: translateX(-50%); /* Adjust to perfectly center it */
   background-color: white;
   border: 1px solid #ddd;
   padding: 10px;

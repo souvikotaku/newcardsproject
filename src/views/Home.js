@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import "./Home.css";
 
 const Home = () => {
-  const [sections, setSections] = useState([{ hasChild: false, logo: null }]); // Tracks sections, child status, and logos
+  const [sections, setSections] = useState([
+    { hasChild: false, logo: null, isPopupOpen: false },
+  ]); // Added isPopupOpen for each section
   const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
   const [activeSectionIndex, setActiveSectionIndex] = useState(null); // Track which section's logo is being added
 
@@ -16,15 +18,25 @@ const Home = () => {
       newSections[index].hasChild = false;
     } else {
       // If no child, add a new section
-      newSections.splice(index + 1, 0, { hasChild: false, logo: null });
+      newSections.splice(index + 1, 0, {
+        hasChild: false,
+        logo: null,
+        isPopupOpen: false,
+      });
       newSections[index].hasChild = true;
     }
+
+    // Close the popup for all sections after adding a section
+    newSections.forEach((section, i) => {
+      if (i === index) {
+        section.isPopupOpen = false;
+      }
+    });
 
     setSections(newSections);
   };
 
-  // Handle removing a section
-
+  // Function to remove section at a specific index
   const removeSectionAtIndex = (index) => {
     const newSections = [...sections];
 
@@ -61,6 +73,13 @@ const Home = () => {
     }
   };
 
+  // Toggle popup visibility
+  const togglePopup = (index) => {
+    const newSections = [...sections];
+    newSections[index].isPopupOpen = !newSections[index].isPopupOpen; // Toggle the popup for this section
+    setSections(newSections);
+  };
+
   return (
     <div className="proposal-page">
       {/* Left Section */}
@@ -72,7 +91,7 @@ const Home = () => {
               {index !== 0 && (
                 <button
                   className="remove-section-btn"
-                  onClick={() => removeSectionAtIndex(index)}
+                  onClick={() => removeSectionAtIndex(index)} // Call removeSectionAtIndex
                 >
                   &times;
                 </button>
@@ -120,13 +139,47 @@ const Home = () => {
                   Contract term <strong>12 months</strong>
                 </span>
               </div>
+
               {/* Toggle Button for Adding/Removing Section */}
               <button
                 className="add-section-btn"
-                onClick={() => toggleSectionAtIndex(index)}
+                onClick={() => {
+                  //   toggleSectionAtIndex(index); // Toggle the section itself
+                  //   togglePopup(index); // Toggle the popup for this section
+
+                  if (section.hasChild) {
+                    toggleSectionAtIndex(index);
+                  } else {
+                    togglePopup(index);
+                  }
+                }}
               >
                 {section.hasChild ? "-" : "+"}
               </button>
+
+              {/* Show Popup */}
+              {section.isPopupOpen && (
+                <div className="options-popup">
+                  <div
+                    className="popup-option"
+                    onClick={() => toggleSectionAtIndex(index)}
+                  >
+                    Add Text and Image
+                  </div>
+                  <div
+                    className="popup-option"
+                    onClick={() => toggleSectionAtIndex(index)}
+                  >
+                    Add Media
+                  </div>
+                  <div
+                    className="popup-option"
+                    onClick={() => toggleSectionAtIndex(index)}
+                  >
+                    Add Testimonial
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
