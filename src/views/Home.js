@@ -90,182 +90,238 @@ const Home = () => {
       <div className="left-section">
         <div className="scrollable-box">
           {sections.map((section, index) => (
-            <div
-              key={index}
-              className="proposal-box"
-              //   style={{
-              //     backgroundImage: section.coverImage
-              //       ? `url(${section.coverImage})`
-              //       : "none",
-              //   }}
-            >
-              {/* Remove Button */}
-              {index !== 0 && (
-                <button
-                  className="remove-section-btn"
-                  onClick={() => removeSectionAtIndex(index)}
-                >
-                  &times;
-                </button>
-              )}
+            <>
               <div
-                style={{
-                  backgroundImage: section.coverImage
-                    ? `url(${section.coverImage})`
-                    : "none",
-                  padding: "10px",
-                }}
+                key={index}
+                className="proposal-box"
+                //   style={{
+                //     backgroundImage: section.coverImage
+                //       ? `url(${section.coverImage})`
+                //       : "none",
+                //   }}
               >
+                {/* Remove Button */}
+                {index !== 0 && (
+                  <button
+                    className="remove-section-btn"
+                    onClick={() => removeSectionAtIndex(index)}
+                  >
+                    &times;
+                  </button>
+                )}
                 <div
-                  className="add-logo"
-                  onClick={() => {
-                    setActiveSectionIndex(index);
-                    setIsLogoModalOpen(true);
+                  style={{
+                    backgroundImage: section.coverImage
+                      ? `url(${section.coverImage})`
+                      : "none",
+                    padding: "10px",
                   }}
                 >
-                  {section.logo ? (
-                    <img
-                      src={section.logo}
-                      alt="Uploaded Logo"
-                      className="logo-preview"
-                    />
-                  ) : (
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                      }}
-                    >
-                      <p
+                  <div
+                    className="add-logo"
+                    onClick={() => {
+                      setActiveSectionIndex(index);
+                      setIsLogoModalOpen(true);
+                    }}
+                  >
+                    {section.logo ? (
+                      <img
+                        src={section.logo}
+                        alt="Uploaded Logo"
+                        className="logo-preview"
+                      />
+                    ) : (
+                      <div
                         style={{
-                          lineHeight: "1px",
+                          display: "flex",
+                          flexDirection: "column",
                         }}
                       >
-                        +
-                      </p>
-                      <p
-                        style={{
-                          lineHeight: "1px",
-                        }}
-                      >
-                        Add logo
-                      </p>
-                    </div>
-                  )}
+                        <p
+                          style={{
+                            lineHeight: "1px",
+                          }}
+                        >
+                          +
+                        </p>
+                        <p
+                          style={{
+                            lineHeight: "1px",
+                          }}
+                        >
+                          Add logo
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Add/Edit Cover Image Section */}
+                  <div
+                    className="add-cover-image"
+                    style={{
+                      display: "flex",
+                      justifyContent: "end",
+                    }}
+                    onClick={() => {
+                      setActiveSectionIndex(index);
+                      setIsCoverImageModalOpen(true);
+                    }}
+                  >
+                    {section.coverImage ? (
+                      <div className="cover-image-preview editbuttondiv">
+                        <p className="edittext">Edit cover image</p>{" "}
+                        {/* Option to edit */}
+                      </div>
+                    ) : (
+                      <div className="editbuttondiv">
+                        <p className="edittext">Add cover image</p>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
-                {/* Add/Edit Cover Image Section */}
+                {/* Add Logo Section */}
+
+                {/* Other sections content */}
+                <div className="prepared-for">Prepared for -</div>
                 <div
-                  className="add-cover-image"
+                  style={{
+                    justifyContent: "start",
+                    display: "flex",
+                  }}
+                >
+                  <input
+                    style={{
+                      width: "fit-content",
+                    }}
+                    type="text"
+                    className="title-input"
+                    placeholder="Add Title here"
+                  />
+                </div>
+                <div
+                  style={{
+                    justifyContent: "start",
+                    display: "flex",
+                  }}
+                >
+                  <textarea
+                    rows="2"
+                    type="text"
+                    className="title-input"
+                    placeholder="Add description here"
+                  />
+                </div>
+                <div
                   style={{
                     display: "flex",
-                    justifyContent: "end",
-                  }}
-                  onClick={() => {
-                    setActiveSectionIndex(index);
-                    setIsCoverImageModalOpen(true);
+                    justifyContent: "space-between",
+                    marginBottom: "2%",
                   }}
                 >
-                  {section.coverImage ? (
-                    <div className="cover-image-preview editbuttondiv">
-                      <p className="edittext">Edit cover image</p>{" "}
-                      {/* Option to edit */}
-                    </div>
-                  ) : (
-                    <div className="editbuttondiv">
-                      <p className="edittext">Add cover image</p>
-                    </div>
-                  )}
+                  <p className="accept-date">
+                    Accept before <span>February 21, 2025</span>
+                  </p>
+                  <button className="accept-button">Accept</button>
                 </div>
-              </div>
-
-              {/* Add Logo Section */}
-
-              {/* Other sections content */}
-              <div className="prepared-for">Prepared for -</div>
-              <div
-                style={{
-                  justifyContent: "start",
-                  display: "flex",
-                }}
-              >
-                <textarea
-                  rows="2"
-                  type="text"
-                  className="title-input"
-                  placeholder="Add title here"
-                />
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  marginBottom: "2%",
-                }}
-              >
-                <p className="accept-date">
-                  Accept before <span>February 21, 2025</span>
-                </p>
-                <button className="accept-button">Accept</button>
-              </div>
-              <hr></hr>
-              <div
-                style={{
-                  display: "flex",
-                  marginTop: "2%",
-                }}
-              >
-                <p className="accept-date">
-                  Starts on <span>proposal acceptance</span>
-                </p>
-                <p
-                  className="accept-date"
+                <hr></hr>
+                <div
                   style={{
-                    marginLeft: "10px",
+                    display: "flex",
+                    marginTop: "2%",
                   }}
                 >
-                  Contract term <span>12 months</span>
-                </p>
-              </div>
+                  <p className="accept-date">
+                    Starts on <span>proposal acceptance</span>
+                  </p>
+                  <p
+                    className="accept-date"
+                    style={{
+                      marginLeft: "10px",
+                    }}
+                  >
+                    Contract term <span>12 months</span>
+                  </p>
+                </div>
 
-              {/* Toggle Button for Adding/Removing Section */}
-              <button
-                className="add-section-btn"
-                onClick={() => {
-                  if (section.hasChild) {
-                    toggleSectionAtIndex(index);
-                  } else {
-                    togglePopup(index);
-                  }
+                {/* Toggle Button for Adding/Removing Section */}
+                {/* <button
+                  className="add-section-btn"
+                  onClick={() => {
+                    if (section.hasChild) {
+                      toggleSectionAtIndex(index);
+                    } else {
+                      togglePopup(index);
+                    }
+                  }}
+                >
+                  {section.hasChild ? "-" : "+"}
+                </button> */}
+
+                {/* Show Popup */}
+                {section.isPopupOpen && (
+                  <div className="options-popup">
+                    <div
+                      className="popup-option"
+                      onClick={() => toggleSectionAtIndex(index)}
+                    >
+                      Add Text and Image
+                    </div>
+                    <div
+                      className="popup-option"
+                      onClick={() => toggleSectionAtIndex(index)}
+                    >
+                      Add Media
+                    </div>
+                    <div
+                      className="popup-option"
+                      onClick={() => toggleSectionAtIndex(index)}
+                    >
+                      Add Testimonial
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div
+                style={{
+                  marginBottom: "10px",
+                  display: "flex",
+                  justifyContent: "center",
                 }}
               >
-                {section.hasChild ? "-" : "+"}
-              </button>
-
-              {/* Show Popup */}
-              {section.isPopupOpen && (
-                <div className="options-popup">
-                  <div
-                    className="popup-option"
-                    onClick={() => toggleSectionAtIndex(index)}
+                <div
+                  style={{
+                    width: "fit-content",
+                    display: "flex",
+                  }}
+                >
+                  <button
+                    className="add-section-btn"
+                    onClick={() => {
+                      if (section.hasChild) {
+                        toggleSectionAtIndex(index);
+                      } else {
+                        togglePopup(index);
+                      }
+                    }}
                   >
-                    Add Text and Image
-                  </div>
-                  <div
-                    className="popup-option"
-                    onClick={() => toggleSectionAtIndex(index)}
+                    {section.hasChild ? "-" : "+"}
+                  </button>
+                  <button
+                    className="add-section-btn-2"
+                    // onClick={() => {
+                    //   if (section.hasChild) {
+                    //     toggleSectionAtIndex(index);
+                    //   } else {
+                    //     togglePopup(index);
+                    //   }
+                    // }}
                   >
-                    Add Media
-                  </div>
-                  <div
-                    className="popup-option"
-                    onClick={() => toggleSectionAtIndex(index)}
-                  >
-                    Add Testimonial
-                  </div>
+                    {"o"}
+                  </button>
                 </div>
-              )}
-            </div>
+              </div>
+            </>
           ))}
         </div>
       </div>
@@ -293,7 +349,17 @@ const Home = () => {
       {isLogoModalOpen && (
         <div className="modal" onClick={() => setIsLogoModalOpen(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h3>Logo</h3>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                cursor: "pointer",
+              }}
+            >
+              <h3>Logo</h3>
+              <h3 onClick={() => setIsLogoModalOpen(false)}>Hide</h3>
+            </div>
+
             <p>Recommended size: 400 x 400, 1MB</p>
             <div
               className="drop-area"
@@ -309,15 +375,29 @@ const Home = () => {
               id="fileInputLogo"
               onChange={(e) => handleFileUpload(e.target.files[0], "logo")}
             />
-            <label htmlFor="fileInputLogo" className="from-device">
-              From Device
-            </label>
-            <button
-              className="close-modal"
-              onClick={() => setIsLogoModalOpen(false)}
+            <div
+              style={{
+                flexDirection: "column",
+                display: "flex",
+              }}
             >
-              Close
-            </button>
+              <label htmlFor="fileInputLogo" className="from-device">
+                From Device
+              </label>
+
+              {sections[activeSectionIndex]?.logo && (
+                <button
+                  className="removebutton"
+                  onClick={() => {
+                    const newSections = [...sections];
+                    newSections[activeSectionIndex].logo = null;
+                    setSections(newSections);
+                  }}
+                >
+                  Remove
+                </button>
+              )}
+            </div>
           </div>
         </div>
       )}
@@ -326,7 +406,16 @@ const Home = () => {
       {isCoverImageModalOpen && (
         <div className="modal" onClick={() => setIsCoverImageModalOpen(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h3>Cover Image</h3>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                cursor: "pointer",
+              }}
+            >
+              <h3>Cover Image</h3>
+              <h3 onClick={() => setIsCoverImageModalOpen(false)}>Hide</h3>
+            </div>
             <p>Recommended size: 1200 x 800, 2MB</p>
             <div
               className="drop-area"
@@ -344,15 +433,28 @@ const Home = () => {
                 handleFileUpload(e.target.files[0], "coverImage")
               }
             />
-            <label htmlFor="fileInputCoverImage" className="from-device">
-              From Device
-            </label>
-            <button
-              className="close-modal"
-              onClick={() => setIsCoverImageModalOpen(false)}
+            <div
+              style={{
+                flexDirection: "column",
+                display: "flex",
+              }}
             >
-              Close
-            </button>
+              <label htmlFor="fileInputCoverImage" className="from-device">
+                From Device
+              </label>
+              {sections[activeSectionIndex]?.coverImage && (
+                <button
+                  className="removebutton"
+                  onClick={() => {
+                    const newSections = [...sections];
+                    newSections[activeSectionIndex].coverImage = null;
+                    setSections(newSections);
+                  }}
+                >
+                  Remove
+                </button>
+              )}
+            </div>
           </div>
         </div>
       )}
