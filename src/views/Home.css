@@ -1,0 +1,273 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.proposal-page {
+  display: flex;
+  background-color: #fceefc; /* Light pink background */
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.left-section {
+  flex: 3;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.scrollable-box {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  padding-top: 0px;
+  border-radius: 8px;
+  background-color: #fceefc;
+}
+
+.proposal-box {
+  margin-bottom: 20px;
+  padding: 20px;
+  /* border: 1px solid #ccc; */
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-logo {
+  width: 100px;
+  height: 100px;
+  border: 2px dashed #ccc;
+  text-align: center;
+  line-height: 100px;
+  margin-bottom: 10px;
+}
+
+.cover-image {
+  color: #555;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.prepared-for {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.title-input {
+  width: 100%;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.description {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.accept-date {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.accept-date span {
+  font-weight: bold;
+  color: #000;
+}
+
+.accept-button {
+  padding: 10px 20px;
+  background-color: #6e0dad;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.footer {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #555;
+}
+
+.footer strong {
+  font-weight: bold;
+}
+
+.add-section-btn {
+  width: 40px;
+  height: 40px;
+  background-color: #6e0dad;
+  color: #fff;
+  font-size: 20px;
+  border: none;
+  border-radius: 50%;
+  margin: 10px auto;
+  cursor: pointer;
+}
+
+.right-section {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.recipients,
+.signers {
+  margin-bottom: 20px;
+}
+
+.recipients h4,
+.signers h4 {
+  margin: 0 0 10px 0;
+}
+
+.dropdown {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.create-client {
+  padding: 10px;
+  background-color: #6e0dad;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.add-section-btn {
+  margin: 10px auto 0;
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-color: #6e0dad;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.add-section-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Modal Styling */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h3 {
+  margin: 0 0 10px 0;
+}
+
+.modal-content p {
+  font-size: 14px;
+  color: #666;
+}
+
+.drop-area {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+  background: #f9f9f9;
+  color: #666;
+  cursor: pointer;
+}
+
+.from-device {
+  display: inline-block;
+  margin: 10px 0;
+  color: #6e0dad;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.close-modal {
+  margin-top: 10px;
+  padding: 8px 15px;
+  background-color: #6e0dad;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Logo Preview */
+.logo-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Recipients Section */
+.right-section {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.recipients,
+.signers {
+  margin-bottom: 20px;
+}
+
+.recipients h4,
+.signers h4 {
+  margin: 0 0 10px 0;
+}
+
+.dropdown {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.create-client {
+  padding: 10px;
+  background-color: #6e0dad;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
