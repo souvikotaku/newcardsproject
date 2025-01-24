@@ -23,6 +23,20 @@ const Home = () => {
     setSections(newSections);
   };
 
+  // Handle removing a section
+
+  const removeSectionAtIndex = (index) => {
+    const newSections = [...sections];
+
+    if (index > 0 && newSections[index - 1].hasChild) {
+      // If a parent section exists above and hasChild is true, reset it
+      newSections[index - 1].hasChild = false;
+    }
+
+    newSections.splice(index, 1); // Remove the section at the specified index
+    setSections(newSections);
+  };
+
   // Handle file upload
   const handleFileUpload = (file) => {
     if (file && (file.type === "image/jpeg" || file.type === "image/png")) {
@@ -54,6 +68,16 @@ const Home = () => {
         <div className="scrollable-box">
           {sections.map((section, index) => (
             <div key={index} className="proposal-box">
+              {/* Remove Button */}
+              {index !== 0 && (
+                <button
+                  className="remove-section-btn"
+                  onClick={() => removeSectionAtIndex(index)}
+                >
+                  &times;
+                </button>
+              )}
+
               {/* Add Logo Section */}
               <div
                 className="add-logo"

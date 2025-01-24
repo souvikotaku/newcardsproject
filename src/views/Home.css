@@ -31,6 +31,7 @@ body {
 }
 
 .proposal-box {
+  position: relative;
   margin-bottom: 20px;
   padding: 20px;
   /* border: 1px solid #ccc; */
@@ -270,4 +271,47 @@ body {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+/* Remove Section Button */
+.remove-section-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.remove-section-btn:hover {
+  background: darkred;
+}
+/* Options Popup Styling */
+.options-popup {
+  position: absolute;
+  top: -60px;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 200px;
+}
+
+.popup-option {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.popup-option:hover {
+  background-color: #f0f0f0;
 }
