@@ -274,6 +274,21 @@ body {
   top: 30px;
   z-index: 2;
 }
+.filter-icon {
+  transition: color 0.3s ease;
+  color: gray;
+}
+.uploadlogo {
+  width: fit-content;
+  /* margin: auto; */
+  background: #dbdbdb;
+  padding: 30px;
+  border-radius: 45px;
+}
+/* Hover effect for the button */
+.filter-button:hover .filter-icon {
+  color: blue;
+}
 
 .indisection {
   background-color: #fff;
@@ -283,12 +298,33 @@ body {
 }
 
 .indisection2 {
+  width: 60px;
   background-color: #fff;
   border-radius: 8px;
-  padding: 30px;
+  padding: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   height: fit-content;
   margin-left: 10px;
+}
+
+.filterpara {
+  padding: 10px;
+  margin: 0px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  cursor: pointer; /* Ensures it looks clickable */
+  transition: background-color 0.3s ease; /* Smooth background transition */
+  border-radius: 5px;
+}
+
+.filterpara:hover {
+  background-color: #f2f3f6; /* Changes background to pink on hover */
+}
+
+.filterpara:active {
+  background-color: pink; /* Ensures background is pink on click */
 }
 
 .modal-content-logo h3 {
@@ -309,6 +345,15 @@ body {
   color: #474747;
   cursor: pointer;
   height: 170px;
+  display: flex;
+  justify-content: center;
+}
+
+.uploadicondiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .removebutton {
@@ -320,15 +365,36 @@ body {
   cursor: pointer;
   height: 45px;
   background-color: white;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .from-device {
   display: inline-block;
   margin: 10px 0;
   color: #6e0dad;
-  font-size: 14px;
+  font-size: 16px;
   cursor: pointer;
   text-decoration: underline;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.fromdevicediv {
+  display: flex;
+  justify-content: center;
+}
+
+.fromdevicepara {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-right: 10px;
+  margin-top: 10px;
 }
 
 .close-modal {

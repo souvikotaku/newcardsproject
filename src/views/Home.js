@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import "./Home.css";
+import { FiFilter, FiUpload } from "react-icons/fi"; // Import the filter icon
+import { HiOutlineUserGroup, HiOutlineCalendar } from "react-icons/hi";
+import { TbCards, TbCalendarUser, TbTrash } from "react-icons/tb";
+import { LuArrowUpDown } from "react-icons/lu";
+import { FaRegFolder } from "react-icons/fa";
 
 const Home = () => {
   const [sections, setSections] = useState([
@@ -200,7 +205,12 @@ const Home = () => {
                           onDragOver={(e) => e.preventDefault()}
                           onDrop={(e) => handleDrop(e, "logo")}
                         >
-                          Drop files here
+                          <div className="uploadicondiv">
+                            <p className="uploadlogo">
+                              <FiUpload size={30} color="black" />
+                            </p>
+                            Drop files here
+                          </div>
                         </div>
                         <input
                           type="file"
@@ -221,12 +231,18 @@ const Home = () => {
                             display: "flex",
                           }}
                         >
-                          <label
-                            htmlFor="fileInputLogo"
-                            className="from-device"
-                          >
-                            From Device
-                          </label>
+                          <div className="fromdevicediv">
+                            <p className="fromdevicepara">
+                              <FaRegFolder size={20} />
+                            </p>
+
+                            <label
+                              htmlFor="fileInputLogo"
+                              className="from-device"
+                            >
+                              From Device
+                            </label>
+                          </div>
 
                           {sections[activeSectionIndex]?.logo && (
                             <button
@@ -237,6 +253,13 @@ const Home = () => {
                                 setSections(newSections);
                               }}
                             >
+                              <p
+                                style={{
+                                  marginRight: "10px",
+                                }}
+                              >
+                                <TbTrash size={20} />
+                              </p>
                               Remove
                             </button>
                           )}
@@ -479,11 +502,26 @@ const Home = () => {
             </div>
           </div>
           <div className="indisection2">
-            <h4>A</h4>
-            <h4>A</h4>
-            <h4>A</h4>
-            <h4>A</h4>
-            <h4>A</h4>
+            <p className="filterpara">
+              {" "}
+              <HiOutlineUserGroup size={24} className="filter-icon" />
+            </p>
+            <p className="filterpara">
+              {" "}
+              <HiOutlineCalendar size={24} className="filter-icon" />
+            </p>
+            <p className="filterpara">
+              {" "}
+              <TbCards size={24} className="filter-icon" />
+            </p>
+            <p className="filterpara">
+              {" "}
+              <TbCalendarUser size={24} className="filter-icon" />
+            </p>
+            <p className="filterpara">
+              {" "}
+              <LuArrowUpDown size={24} className="filter-icon" />
+            </p>
           </div>
         </div>
 
@@ -573,7 +611,12 @@ const Home = () => {
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={(e) => handleDrop(e, "coverImage")}
               >
-                Drop files here
+                <div className="uploadicondiv">
+                  <p className="uploadlogo">
+                    <FiUpload size={30} color="black" />
+                  </p>
+                  Drop files here
+                </div>
               </div>
               <input
                 type="file"
@@ -590,9 +633,15 @@ const Home = () => {
                   display: "flex",
                 }}
               >
-                <label htmlFor="fileInputCoverImage" className="from-device">
-                  From Device
-                </label>
+                <div className="fromdevicediv">
+                  <p className="fromdevicepara">
+                    <FaRegFolder size={20} />
+                  </p>
+
+                  <label htmlFor="fileInputCoverImage" className="from-device">
+                    From Device
+                  </label>
+                </div>
                 {sections[activeSectionIndex]?.coverImage && (
                   <button
                     className="removebutton"
@@ -602,6 +651,13 @@ const Home = () => {
                       setSections(newSections);
                     }}
                   >
+                    <p
+                      style={{
+                        marginRight: "10px",
+                      }}
+                    >
+                      <TbTrash size={20} />
+                    </p>
                     Remove
                   </button>
                 )}
