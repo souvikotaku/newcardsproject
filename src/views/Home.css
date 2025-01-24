@@ -9,6 +9,7 @@ body {
   height: 100vh;
   padding: 20px;
   box-sizing: border-box;
+  width: 1500px;
 }
 
 .left-section {
@@ -166,14 +167,6 @@ body {
   cursor: pointer;
 } */
 
-.right-section {
-  flex: 1;
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 .recipients,
 .signers {
   margin-bottom: 20px;
@@ -189,7 +182,8 @@ body {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 .create-client {
@@ -268,6 +262,44 @@ body {
   color: #666;
 }
 
+.modal-content-logo {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 14em;
+  top: 30px;
+  z-index: 2;
+}
+
+.indisection {
+  background-color: #fff;
+  border-radius: 8px;
+  /* padding: 20px; */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.indisection2 {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+  margin-left: 10px;
+}
+
+.modal-content-logo h3 {
+  margin: 0 0 10px 0;
+}
+
+.modal-content-logo p {
+  font-size: 14px;
+  color: #666;
+}
+
 .drop-area {
   border: 2px dashed #ccc;
   padding: 20px;
@@ -320,15 +352,17 @@ body {
 /* Recipients Section */
 .right-section {
   flex: 1;
-  background-color: #fff;
+  height: fit-content;
+  /* background-color: #fff;
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
 }
 
 .recipients,
 .signers {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  padding: 20px;
 }
 
 .recipients h4,
