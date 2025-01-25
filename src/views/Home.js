@@ -682,6 +682,9 @@ const Home = () => {
               </label>
               <select className="dropdown">
                 <option>Select...</option>
+                <option>option 1</option>
+                <option>option 2</option>
+                <option>option 3</option>
               </select>
               <label
                 style={{

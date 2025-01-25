@@ -327,7 +327,7 @@ body {
 }
 
 .filterpara:active {
-  background-color: pink; /* Ensures background is pink on click */
+  background-color: #474747;
 }
 
 .modal-content-logo h3 {
