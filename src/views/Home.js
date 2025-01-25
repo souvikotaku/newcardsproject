@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import "./Home.css";
-import { FiFilter, FiUpload } from "react-icons/fi"; // Import the filter icon
+import { FiFilter, FiUpload, FiPlus } from "react-icons/fi"; // Import the filter icon
 import { HiOutlineUserGroup, HiOutlineCalendar } from "react-icons/hi";
 import { TbCards, TbCalendarUser, TbTrash } from "react-icons/tb";
-import { LuArrowUpDown } from "react-icons/lu";
+import { LuArrowUpDown, LuCalendarCheck2 } from "react-icons/lu";
 import { FaRegFolder } from "react-icons/fa";
+import { IoHourglassOutline, IoFilmOutline } from "react-icons/io5";
+import { GoStack } from "react-icons/go";
+import { BiImage, BiVideo, BiHeart } from "react-icons/bi";
+import { HiOutlineBars3BottomLeft } from "react-icons/hi2";
+import { RxCross1 } from "react-icons/rx";
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css"; // Import the CSS for styling
 
 const Home = () => {
   const [sections, setSections] = useState([
@@ -127,12 +134,21 @@ const Home = () => {
                 >
                   {/* Remove Button */}
                   {index !== 0 && (
-                    <button
+                    <>
+                      {/* <button
                       className="remove-section-btn"
                       onClick={() => removeSectionAtIndex(index)}
                     >
                       &times;
-                    </button>
+                    </button> */}
+                      <RxCross1
+                        className="remove-section-btn"
+                        data-tooltip-id="remove-tooltip" // Add this to link with Tooltip
+                        data-tooltip-content="Remove Section" // Tooltip content
+                        onClick={() => removeSectionAtIndex(index)}
+                      />
+                      <Tooltip id="remove-tooltip" place="top" />
+                    </>
                   )}
                   <div
                     style={{
@@ -166,9 +182,11 @@ const Home = () => {
                           <p
                             style={{
                               lineHeight: "1px",
+                              marginTop: "5px",
+                              marginBottom: "5px",
                             }}
                           >
-                            +
+                            <FiPlus size={30} />
                           </p>
                           <p
                             style={{
@@ -332,7 +350,14 @@ const Home = () => {
                     }}
                   >
                     <p className="accept-date">
-                      Accept before <span>February 21, 2025</span>
+                      Accept before{" "}
+                      <span
+                        style={{
+                          marginLeft: "5px",
+                        }}
+                      >
+                        February 21, 2025
+                      </span>
                     </p>
                     <button className="accept-button">Accept</button>
                   </div>
@@ -344,7 +369,22 @@ const Home = () => {
                     }}
                   >
                     <p className="accept-date">
-                      Starts on <span>proposal acceptance</span>
+                      <LuCalendarCheck2
+                        size={15}
+                        color="gray"
+                        style={{
+                          marginRight: "5px",
+                          marginTop: "-3px",
+                        }}
+                      />{" "}
+                      Starts on{" "}
+                      <span
+                        style={{
+                          marginLeft: "5px",
+                        }}
+                      >
+                        proposal acceptance
+                      </span>
                     </p>
                     <p
                       className="accept-date"
@@ -352,7 +392,22 @@ const Home = () => {
                         marginLeft: "10px",
                       }}
                     >
-                      Contract term <span>12 months</span>
+                      <IoHourglassOutline
+                        size={15}
+                        color="gray"
+                        style={{
+                          marginRight: "5px",
+                          marginTop: "-3px",
+                        }}
+                      />{" "}
+                      Contract term{" "}
+                      <span
+                        style={{
+                          marginLeft: "5px",
+                        }}
+                      >
+                        12 months
+                      </span>
                     </p>
                   </div>
 
@@ -372,24 +427,148 @@ const Home = () => {
 
                   {/* Show Popup */}
                   {section.isPopupOpen && (
+                    // <div className="options-popup">
+                    //   <div
+                    //     className="popup-option"
+                    //     onClick={() => toggleSectionAtIndex(index)}
+                    //   >
+                    //     Add Text and Image
+                    //   </div>
+                    //   <div
+                    //     className="popup-option"
+                    //     onClick={() => toggleSectionAtIndex(index)}
+                    //   >
+                    //     Add Media
+                    //   </div>
+                    //   <div
+                    //     className="popup-option"
+                    //     onClick={() => toggleSectionAtIndex(index)}
+                    //   >
+                    //     Add Testimonial
+                    //   </div>
+                    // </div>
                     <div className="options-popup">
-                      <div
-                        className="popup-option"
-                        onClick={() => toggleSectionAtIndex(index)}
-                      >
-                        Add Text and Image
+                      <div>
+                        <p
+                          style={{
+                            textAlign: "left",
+                            fontSize: "16px",
+                            fontWeight: "bold",
+                            padding: "10px",
+                            marginBottom: "0px",
+                            paddingTop: "0px",
+                            marginBottom: "10px",
+                          }}
+                        >
+                          Add Section
+                        </p>
                       </div>
                       <div
                         className="popup-option"
                         onClick={() => toggleSectionAtIndex(index)}
+                        style={
+                          {
+                            // paddingTop: "0px",
+                            // paddingLeft: "20px",
+                          }
+                        }
                       >
-                        Add Media
+                        <span className="popupspan">
+                          <HiOutlineBars3BottomLeft className="popup-icon" />
+                        </span>
+                        <div
+                          style={{
+                            textAlign: "left",
+                            fontSize: "12px",
+                          }}
+                        >
+                          <p
+                            style={{
+                              marginBottom: "5px",
+                              marginTop: "0px",
+                            }}
+                          >
+                            Text and Image
+                          </p>
+                          <p
+                            style={{
+                              marginTop: "5px",
+                              color: "gray",
+                            }}
+                          >
+                            Use it for About us, Exec. summary etc.
+                          </p>
+                        </div>
                       </div>
                       <div
                         className="popup-option"
                         onClick={() => toggleSectionAtIndex(index)}
+                        style={{
+                          paddingTop: "0px",
+                          // paddingLeft: "20px",
+                        }}
                       >
-                        Add Testimonial
+                        <span className="popupspan">
+                          <IoFilmOutline className="popup-icon" />
+                        </span>
+                        <div
+                          style={{
+                            textAlign: "left",
+                            fontSize: "12px",
+                          }}
+                        >
+                          <p
+                            style={{
+                              marginBottom: "5px",
+                              marginTop: "0px",
+                            }}
+                          >
+                            Media and embed
+                          </p>
+                          <p
+                            style={{
+                              marginTop: "5px",
+                              color: "gray",
+                            }}
+                          >
+                            Add pitch videos or brochure files
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        className="popup-option"
+                        onClick={() => toggleSectionAtIndex(index)}
+                        style={{
+                          paddingTop: "0px",
+                          // paddingLeft: "20px",
+                        }}
+                      >
+                        <span className="popupspan">
+                          <BiHeart className="popup-icon" />
+                        </span>
+                        <div
+                          style={{
+                            textAlign: "left",
+                            fontSize: "12px",
+                          }}
+                        >
+                          <p
+                            style={{
+                              marginBottom: "5px",
+                              marginTop: "0px",
+                            }}
+                          >
+                            Testimonials
+                          </p>
+                          <p
+                            style={{
+                              marginTop: "5px",
+                              color: "gray",
+                            }}
+                          >
+                            Add testimonials from your client
+                          </p>
+                        </div>
                       </div>
                     </div>
                   )}
@@ -407,7 +586,7 @@ const Home = () => {
                       display: "flex",
                     }}
                   >
-                    <button
+                    {/* <button
                       className="add-section-btn"
                       onClick={() => {
                         if (section.hasChild) {
@@ -418,7 +597,24 @@ const Home = () => {
                       }}
                     >
                       {section.hasChild ? "-" : "+"}
+                    </button> */}
+                    <button
+                      className="add-section-btn"
+                      data-tooltip-id={`tooltip-${index}`} // Assign a unique tooltip ID
+                      data-tooltip-content={
+                        section.hasChild ? "Remove Section" : "Add Section"
+                      } // Set tooltip content dynamically
+                      onClick={() => {
+                        if (section.hasChild) {
+                          toggleSectionAtIndex(index);
+                        } else {
+                          togglePopup(index);
+                        }
+                      }}
+                    >
+                      {section.hasChild ? "-" : "+"}
                     </button>
+                    <Tooltip id={`tooltip-${index}`} place="top" />
                     <button
                       className="add-section-btn-2"
                       // onClick={() => {
@@ -429,7 +625,7 @@ const Home = () => {
                       //   }
                       // }}
                     >
-                      {"o"}
+                      <GoStack size={15} />
                     </button>
                   </div>
                 </div>
