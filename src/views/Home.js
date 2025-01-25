@@ -12,6 +12,8 @@ import { HiOutlineBars3BottomLeft } from "react-icons/hi2";
 import { RxCross1 } from "react-icons/rx";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css"; // Import the CSS for styling
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Home = () => {
   const [sections, setSections] = useState([
@@ -21,11 +23,53 @@ const Home = () => {
       coverImage: null,
       isPopupOpen: false,
       islogoPopupOpen: false,
+      title: "", // Initialize title
+      description: "", // Initialize description
+      isEditable: true,
     },
   ]);
   const [isLogoModalOpen, setIsLogoModalOpen] = useState(false);
   const [isCoverImageModalOpen, setIsCoverImageModalOpen] = useState(false);
   const [activeSectionIndex, setActiveSectionIndex] = useState(null);
+
+  const [isEditable, setIsEditable] = useState(true); // State to control editability
+
+  // const handleAcceptClick = () => {
+  //   // toast.success("Details saved successfully!");
+  //   if (isEditable === true) {
+  //     toast.success("Details saved successfully!");
+  //     setIsEditable(false); // Make the input fields non-editable
+  //   } else {
+  //     setIsEditable(true); // Make the input fields non-editable
+  //   }
+  // };
+
+  const handleAcceptClick = (index) => {
+    const newSections = [...sections];
+    const section = newSections[index];
+
+    // Get the values of the title and description fields for the section
+    const title = section.title || ""; // Add title property to section state
+    const description = section.description || ""; // Add description property to section state
+    console.log(title, description);
+    // Check if both title and description are filled
+    if (title.trim() === "" || description.trim() === "") {
+      toast.error(
+        "Please fill out both title and description before accepting."
+      ); // Show toast if any field is empty
+      return; // Stop the function if validation fails
+    }
+
+    // If both fields are filled, proceed with saving the details
+    if (section.isEditable === true) {
+      toast.success("Details saved successfully!");
+      section.isEditable = false; // Make this section non-editable
+    } else {
+      section.isEditable = true; // Toggle back to editable
+    }
+
+    setSections(newSections); // Update the state with the modified section
+  };
 
   // Function to toggle a section after a specific index
   const toggleSectionAtIndex = (index) => {
@@ -41,6 +85,7 @@ const Home = () => {
         coverImage: null,
         isPopupOpen: false,
         islogoPopupOpen: false,
+        isEditable: true,
       });
       newSections[index].hasChild = true;
     }
@@ -50,7 +95,6 @@ const Home = () => {
         section.isPopupOpen = false;
       }
     });
-
     setSections(newSections);
   };
 
@@ -63,6 +107,7 @@ const Home = () => {
     }
 
     newSections.splice(index, 1); // Remove the section at the specified index
+
     setSections(newSections);
   };
 
@@ -106,6 +151,18 @@ const Home = () => {
   const togglelogoPopup = (index) => {
     const newSections = [...sections];
     newSections[index].islogoPopupOpen = !newSections[index].islogoPopupOpen;
+    setSections(newSections);
+  };
+
+  const handleTitleChange = (index, value) => {
+    const newSections = [...sections];
+    newSections[index].title = value;
+    setSections(newSections);
+  };
+
+  const handleDescriptionChange = (index, value) => {
+    const newSections = [...sections];
+    newSections[index].description = value;
     setSections(newSections);
   };
 
@@ -300,32 +357,22 @@ const Home = () => {
 
                   {/* Other sections content */}
                   <div className="prepared-for">Prepared for -</div>
-                  <div
-                    style={{
-                      justifyContent: "start",
-                      display: "flex",
-                    }}
-                  >
+
+                  {/* <div style={{ justifyContent: "start", display: "flex" }}>
                     <input
-                      style={{
-                        width: "fit-content",
-                      }}
+                      style={{ width: "fit-content" }}
                       type="text"
                       className="title-input"
                       placeholder="Add Title here"
+                      disabled={!isEditable} // Disable input field when not editable
                     />
                   </div>
-                  <div
-                    style={{
-                      justifyContent: "start",
-                      display: "flex",
-                    }}
-                  >
+                  <div style={{ justifyContent: "start", display: "flex" }}>
                     <textarea
                       rows="2"
-                      type="text"
                       className="title-input"
                       placeholder="Add description here"
+                      disabled={!isEditable} // Disable textarea field when not editable
                     />
                   </div>
                   <div
@@ -337,16 +384,61 @@ const Home = () => {
                   >
                     <p className="accept-date">
                       Accept before{" "}
-                      <span
-                        style={{
-                          marginLeft: "5px",
-                        }}
-                      >
+                      <span style={{ marginLeft: "5px" }}>
                         February 21, 2025
                       </span>
                     </p>
-                    <button className="accept-button">Accept</button>
+                    <button
+                      className="accept-button"
+                      onClick={handleAcceptClick}
+                    >
+                      {isEditable === false ? "Edit" : "Accept"}
+                    </button>
+                  </div> */}
+                  <div style={{ justifyContent: "start", display: "flex" }}>
+                    <input
+                      type="text"
+                      className="title-input"
+                      placeholder="Add Title here"
+                      value={section.title || ""} // Bind the input value
+                      onChange={(e) => handleTitleChange(index, e.target.value)} // Update title value
+                      disabled={!section.isEditable}
+                    />
                   </div>
+                  <div style={{ justifyContent: "start", display: "flex" }}>
+                    <textarea
+                      rows="2"
+                      className="title-input"
+                      placeholder="Add description here"
+                      value={section.description || ""} // Bind the textarea value
+                      onChange={(e) =>
+                        handleDescriptionChange(index, e.target.value)
+                      } // Update description value
+                      disabled={!section.isEditable}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      marginBottom: "2%",
+                    }}
+                  >
+                    <p className="accept-date">
+                      Accept before{" "}
+                      <span style={{ marginLeft: "5px" }}>
+                        February 21, 2025
+                      </span>
+                    </p>
+                    <button
+                      className="accept-button"
+                      onClick={() => handleAcceptClick(index)} // Pass the section index
+                    >
+                      {section.isEditable === false ? "Edit" : "Accept"}
+                    </button>
+                  </div>
+                  <ToastContainer />
+
                   <hr></hr>
                   <div
                     style={{
