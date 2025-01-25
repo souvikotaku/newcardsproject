@@ -123,24 +123,10 @@ const Home = () => {
           <div className="scrollable-box">
             {sections.map((section, index) => (
               <>
-                <div
-                  key={index}
-                  className="proposal-box"
-                  //   style={{
-                  //     backgroundImage: section.coverImage
-                  //       ? `url(${section.coverImage})`
-                  //       : "none",
-                  //   }}
-                >
+                <div key={index} className="proposal-box">
                   {/* Remove Button */}
                   {index !== 0 && (
                     <>
-                      {/* <button
-                      className="remove-section-btn"
-                      onClick={() => removeSectionAtIndex(index)}
-                    >
-                      &times;
-                    </button> */}
                       <RxCross1
                         className="remove-section-btn"
                         data-tooltip-id="remove-tooltip" // Add this to link with Tooltip
@@ -411,42 +397,8 @@ const Home = () => {
                     </p>
                   </div>
 
-                  {/* Toggle Button for Adding/Removing Section */}
-                  {/* <button
-                  className="add-section-btn"
-                  onClick={() => {
-                    if (section.hasChild) {
-                      toggleSectionAtIndex(index);
-                    } else {
-                      togglePopup(index);
-                    }
-                  }}
-                >
-                  {section.hasChild ? "-" : "+"}
-                </button> */}
-
                   {/* Show Popup */}
                   {section.isPopupOpen && (
-                    // <div className="options-popup">
-                    //   <div
-                    //     className="popup-option"
-                    //     onClick={() => toggleSectionAtIndex(index)}
-                    //   >
-                    //     Add Text and Image
-                    //   </div>
-                    //   <div
-                    //     className="popup-option"
-                    //     onClick={() => toggleSectionAtIndex(index)}
-                    //   >
-                    //     Add Media
-                    //   </div>
-                    //   <div
-                    //     className="popup-option"
-                    //     onClick={() => toggleSectionAtIndex(index)}
-                    //   >
-                    //     Add Testimonial
-                    //   </div>
-                    // </div>
                     <div className="options-popup">
                       <div>
                         <p
@@ -466,12 +418,6 @@ const Home = () => {
                       <div
                         className="popup-option"
                         onClick={() => toggleSectionAtIndex(index)}
-                        style={
-                          {
-                            // paddingTop: "0px",
-                            // paddingLeft: "20px",
-                          }
-                        }
                       >
                         <span className="popupspan">
                           <HiOutlineBars3BottomLeft className="popup-icon" />
@@ -586,18 +532,6 @@ const Home = () => {
                       display: "flex",
                     }}
                   >
-                    {/* <button
-                      className="add-section-btn"
-                      onClick={() => {
-                        if (section.hasChild) {
-                          toggleSectionAtIndex(index);
-                        } else {
-                          togglePopup(index);
-                        }
-                      }}
-                    >
-                      {section.hasChild ? "-" : "+"}
-                    </button> */}
                     <button
                       className="add-section-btn"
                       data-tooltip-id={`tooltip-${index}`} // Assign a unique tooltip ID
@@ -615,16 +549,7 @@ const Home = () => {
                       {section.hasChild ? "-" : "+"}
                     </button>
                     <Tooltip id={`tooltip-${index}`} place="top" />
-                    <button
-                      className="add-section-btn-2"
-                      // onClick={() => {
-                      //   if (section.hasChild) {
-                      //     toggleSectionAtIndex(index);
-                      //   } else {
-                      //     togglePopup(index);
-                      //   }
-                      // }}
-                    >
+                    <button className="add-section-btn-2">
                       <GoStack size={15} />
                     </button>
                   </div>
@@ -720,63 +645,6 @@ const Home = () => {
             </p>
           </div>
         </div>
-
-        {/* Logo Modal */}
-        {/* {isLogoModalOpen && (
-        <div className="modal" onClick={() => setIsLogoModalOpen(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                cursor: "pointer",
-              }}
-            >
-              <h3>Logo</h3>
-              <h3 onClick={() => setIsLogoModalOpen(false)}>Hide</h3>
-            </div>
-
-            <p>Recommended size: 400 x 400, 1MB</p>
-            <div
-              className="drop-area"
-              onDragOver={(e) => e.preventDefault()}
-              onDrop={(e) => handleDrop(e, "logo")}
-            >
-              Drop files here
-            </div>
-            <input
-              type="file"
-              accept="image/jpeg, image/png"
-              style={{ display: "none" }}
-              id="fileInputLogo"
-              onChange={(e) => handleFileUpload(e.target.files[0], "logo")}
-            />
-            <div
-              style={{
-                flexDirection: "column",
-                display: "flex",
-              }}
-            >
-              <label htmlFor="fileInputLogo" className="from-device">
-                From Device
-              </label>
-
-              {sections[activeSectionIndex]?.logo && (
-                <button
-                  className="removebutton"
-                  onClick={() => {
-                    const newSections = [...sections];
-                    newSections[activeSectionIndex].logo = null;
-                    setSections(newSections);
-                  }}
-                >
-                  Remove
-                </button>
-              )}
-            </div>
-          </div>
-        </div>
-      )} */}
 
         {/* Cover Image Modal */}
         {isCoverImageModalOpen && (
