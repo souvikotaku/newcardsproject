@@ -31,8 +31,15 @@ const Home = () => {
   const [isLogoModalOpen, setIsLogoModalOpen] = useState(false);
   const [isCoverImageModalOpen, setIsCoverImageModalOpen] = useState(false);
   const [activeSectionIndex, setActiveSectionIndex] = useState(null);
+  const [selectAll, setSelectAll] = useState(true);
 
-  const [isEditable, setIsEditable] = useState(true); // State to control editability
+  const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("teamServices");
+
+  const handleTabSwitch = (tab) => setActiveTab(tab);
+  const toggleDrawer = () => {
+    setDrawerOpen(!isDrawerOpen);
+  };
 
   // const handleAcceptClick = () => {
   //   // toast.success("Details saved successfully!");
@@ -358,43 +365,6 @@ const Home = () => {
                   {/* Other sections content */}
                   <div className="prepared-for">Prepared for -</div>
 
-                  {/* <div style={{ justifyContent: "start", display: "flex" }}>
-                    <input
-                      style={{ width: "fit-content" }}
-                      type="text"
-                      className="title-input"
-                      placeholder="Add Title here"
-                      disabled={!isEditable} // Disable input field when not editable
-                    />
-                  </div>
-                  <div style={{ justifyContent: "start", display: "flex" }}>
-                    <textarea
-                      rows="2"
-                      className="title-input"
-                      placeholder="Add description here"
-                      disabled={!isEditable} // Disable textarea field when not editable
-                    />
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      marginBottom: "2%",
-                    }}
-                  >
-                    <p className="accept-date">
-                      Accept before{" "}
-                      <span style={{ marginLeft: "5px" }}>
-                        February 21, 2025
-                      </span>
-                    </p>
-                    <button
-                      className="accept-button"
-                      onClick={handleAcceptClick}
-                    >
-                      {isEditable === false ? "Edit" : "Accept"}
-                    </button>
-                  </div> */}
                   <div style={{ justifyContent: "start", display: "flex" }}>
                     <input
                       type="text"
@@ -487,6 +457,19 @@ const Home = () => {
                         12 months
                       </span>
                     </p>
+                    <div className="editbuttondiv2" onClick={toggleDrawer}>
+                      <p className="edittext2">
+                        <span
+                          style={{
+                            fontSize: "25px",
+                            marginRight: "10px",
+                          }}
+                        >
+                          +
+                        </span>{" "}
+                        Add Services
+                      </p>
+                    </div>
                   </div>
 
                   {/* Show Popup */}
@@ -648,6 +631,211 @@ const Home = () => {
                 </div>
               </>
             ))}
+            {isDrawerOpen && (
+              <div
+                onClick={toggleDrawer}
+                className="fixed inset-0 bg-black bg-opacity-50 z-40"
+              ></div>
+            )}
+            <div className={`side-drawer ${isDrawerOpen ? "open" : "closed"}`}>
+              <div className="side-drawer-header p-4 border-b">
+                <h3 className="text-lg font-bold">Add services to proposal</h3>
+                <RxCross1
+                  style={{ cursor: "pointer" }}
+                  className="text-gray-500 hover:text-gray-700"
+                  onClick={toggleDrawer}
+                />
+              </div>
+
+              {/* Tabs */}
+              <div className="tabs flex items-center border-b">
+                <div>
+                  <button
+                    onClick={() => handleTabSwitch("teamServices")}
+                    className={`tab-button ${
+                      activeTab === "teamServices" ? "active" : ""
+                    }`}
+                  >
+                    Your team's services
+                  </button>
+                  <button
+                    onClick={() => handleTabSwitch("coreLibrary")}
+                    className={`tab-button ${
+                      activeTab === "coreLibrary" ? "active" : ""
+                    }`}
+                  >
+                    Core library
+                  </button>
+                </div>
+
+                <div
+                  className="flex items-center justify-between p-4"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    className="search-input"
+                  />
+                  <button className="create-service-btn">Create service</button>
+                </div>
+              </div>
+              <div
+                className="tabs flex items-center border-b"
+                style={{
+                  marginTop: "10px",
+                }}
+              >
+                <div
+                  className="flex items-center justify-between p-4"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <button
+                    className="create-service-btn"
+                    style={{
+                      backgroundColor: selectAll === true ? "#f8f8f8" : "white",
+                      border:
+                        selectAll === true
+                          ? "1px solid black"
+                          : "1px solid lightgray",
+                      color: "black",
+                      width: "fit-content",
+                      marginLeft: "0px",
+                    }}
+                    onClick={() => setSelectAll(true)}
+                  >
+                    All
+                  </button>
+
+                  <button
+                    className="create-service-btn"
+                    style={{
+                      backgroundColor:
+                        selectAll === false ? "#f8f8f8" : "white",
+                      border:
+                        selectAll === true
+                          ? "1px solid lightgray"
+                          : "1px solid black",
+                      color: "black",
+                      width: "fit-content",
+                    }}
+                    onClick={() => setSelectAll(false)}
+                  >
+                    Category
+                  </button>
+                </div>
+              </div>
+              {/* Tables */}
+              <div
+                className="table-container"
+                style={{
+                  paddingLeft: "20px",
+                  paddingRight: "20px",
+                }}
+              >
+                {activeTab === "teamServices" && (
+                  <table className="service-table">
+                    <thead>
+                      <tr>
+                        <th
+                          style={{
+                            color: "gray",
+                          }}
+                        >
+                          Service name
+                        </th>
+                        <th
+                          style={{
+                            color: "gray",
+                          }}
+                        >
+                          Base price
+                        </th>
+                        <th
+                          style={{
+                            color: "gray",
+                          }}
+                        >
+                          Pricing factors
+                        </th>
+                        <th
+                          style={{
+                            color: "gray",
+                          }}
+                        >
+                          Billing frequency
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Bookkeeping</td>
+                        <td>$500.00</td>
+                        <td>-</td>
+                        <td>One-time</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                )}
+
+                {activeTab === "coreLibrary" && (
+                  <table className="service-table">
+                    <thead>
+                      <tr>
+                        <th
+                          style={{
+                            color: "gray",
+                          }}
+                        >
+                          Service name
+                        </th>
+                        <th
+                          style={{
+                            color: "gray",
+                          }}
+                        >
+                          Category
+                        </th>
+                        <th
+                          style={{
+                            color: "gray",
+                          }}
+                        >
+                          Description
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Tax Preparation</td>
+                        <td>Finance</td>
+                        <td>Preparing tax documents</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                )}
+                {/* Footer */}
+              </div>
+              <div className="side-drawer-footer">
+                <div className="footer-content">
+                  <button
+                    className="footer-btn cancel-btn"
+                    onClick={toggleDrawer}
+                  >
+                    Cancel
+                  </button>
+                  <button className="footer-btn save-btn">
+                    Add to proposal
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
