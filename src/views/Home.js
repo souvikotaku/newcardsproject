@@ -36,6 +36,66 @@ const Home = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("teamServices");
 
+  const [selectAllnew, setSelectAllnew] = useState(false);
+  const [selectedRows, setSelectedRows] = useState({});
+
+  const teamServicesData = [
+    {
+      id: 1,
+      name: "Bookkeeping",
+      basePrice: "$500.00",
+      pricingFactors: "-",
+      billingFrequency: "One-time",
+    },
+    // Add more rows here as needed
+  ];
+
+  const coreLibraryData = [
+    {
+      id: 1,
+      name: "Tax Preparation",
+      category: "Finance",
+      description: "Preparing tax documents",
+    },
+    // Add more rows here as needed
+  ];
+
+  // Handle select all
+  const handleSelectAll = () => {
+    setSelectAllnew(!selectAllnew);
+    const updatedSelection = {};
+    (activeTab === "teamServices" ? teamServicesData : coreLibraryData).forEach(
+      (row) => {
+        updatedSelection[row.id] = !selectAllnew;
+      }
+    );
+    setSelectedRows(updatedSelection);
+  };
+
+  // Handle individual row select
+  const handleRowSelect = (id) => {
+    setSelectedRows((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
+  const renderTableRows = (data, columns) =>
+    data.map((row) => (
+      <tr key={row.id}>
+        <td>
+          <input
+            type="checkbox"
+            checked={!!selectedRows[row.id]}
+            onChange={() => handleRowSelect(row.id)}
+          />
+        </td>
+        {columns.map((col) => (
+          <td key={col.key}>{row[col.key]}</td>
+        ))}
+      </tr>
+    ));
+
   const handleTabSwitch = (tab) => setActiveTab(tab);
   const toggleDrawer = () => {
     setDrawerOpen(!isDrawerOpen);
@@ -732,7 +792,7 @@ const Home = () => {
                 </div>
               </div>
               {/* Tables */}
-              <div
+              {/* <div
                 className="table-container"
                 style={{
                   paddingLeft: "20px",
@@ -820,7 +880,103 @@ const Home = () => {
                     </tbody>
                   </table>
                 )}
-                {/* Footer */}
+              </div> */}
+              <div className="table-container">
+                {activeTab === "teamServices" && (
+                  <table className="service-table">
+                    <thead>
+                      <tr>
+                        <th>
+                          <input
+                            type="checkbox"
+                            checked={selectAllnew}
+                            onChange={handleSelectAll}
+                          />
+                        </th>
+                        <th
+                          style={{
+                            color: "gray",
+                          }}
+                        >
+                          Service name
+                        </th>
+                        <th
+                          style={{
+                            color: "gray",
+                          }}
+                        >
+                          Base price
+                        </th>
+                        <th
+                          style={{
+                            color: "gray",
+                          }}
+                        >
+                          Pricing factors
+                        </th>
+                        <th
+                          style={{
+                            color: "gray",
+                          }}
+                        >
+                          Billing frequency
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {renderTableRows(teamServicesData, [
+                        { key: "name" },
+                        { key: "basePrice" },
+                        { key: "pricingFactors" },
+                        { key: "billingFrequency" },
+                      ])}
+                    </tbody>
+                  </table>
+                )}
+
+                {activeTab === "coreLibrary" && (
+                  <table className="service-table">
+                    <thead>
+                      <tr>
+                        <th>
+                          <input
+                            type="checkbox"
+                            checked={selectAllnew}
+                            onChange={handleSelectAll}
+                          />
+                        </th>
+                        <th
+                          style={{
+                            color: "gray",
+                          }}
+                        >
+                          Service name
+                        </th>
+                        <th
+                          style={{
+                            color: "gray",
+                          }}
+                        >
+                          Category
+                        </th>
+                        <th
+                          style={{
+                            color: "gray",
+                          }}
+                        >
+                          Description
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {renderTableRows(coreLibraryData, [
+                        { key: "name" },
+                        { key: "category" },
+                        { key: "description" },
+                      ])}
+                    </tbody>
+                  </table>
+                )}
               </div>
               <div className="side-drawer-footer">
                 <div className="footer-content">
